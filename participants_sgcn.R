@@ -6,7 +6,7 @@ library(gapminder)
 library(readr)
 library(forcats)
 
-file2 <- "https://raw.githubusercontent.com/JG-Masters-Research/R_Analysis/refs/heads/main/species_participants.csv?token=GHSAT0AAAAAADHNDBUSCSX5ABDKEH7JSCJ42DWQXXQ"
+file2 <- "https://raw.githubusercontent.com/JG-Masters-Research/R_Analysis/refs/heads/main/species_participants.csv"
 sgcn <- read_csv(file2)
 print(head(sgcn))
 
