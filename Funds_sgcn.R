@@ -6,7 +6,7 @@ library(gapminder)
 library(readr)
 
 #access data from github
-file3 <- "https://github.com/JG-Masters-Research/R_Analysis/blob/main/Funds_per_Species.csv"
+file3 <- "https://raw.githubusercontent.com/JG-Masters-Research/R_Analysis/refs/heads/main/Funds_per_Species.csv?token=GHSAT0AAAAAADHNDBUSD56MMQPKP5E6FHY42DWQSHA"
 funds <- read_csv(file3)
 print(head(funds))
 
