@@ -7,7 +7,7 @@ library(readr)
 library(forcats)
 
 #access data from github
-file3 <- "https://raw.githubusercontent.com/JG-Masters-Research/R_Analysis/refs/heads/main/Funds_per_Species.csv?token=GHSAT0AAAAAADHNDBUSD56MMQPKP5E6FHY42DWQSHA"
+file3 <- "https://raw.githubusercontent.com/JG-Masters-Research/R_Analysis/refs/heads/main/Funds_per_Species.csv"
 funds <- read_csv(file3)
 print(head(funds))
 
