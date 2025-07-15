@@ -10,7 +10,7 @@ file2 <- "https://raw.githubusercontent.com/JG-Masters-Research/R_Analysis/refs/
 sgcn <- read_csv(file2)
 print(head(sgcn))
 
-#layer 1
+#create plot
 
 participants <- ggplot(sgcn, aes(x = fct_reorder(state, SGCN), y = participants)) +
   geom_point(color = "steelblue", fill = "green", shape = 21, alpha = 1) +
