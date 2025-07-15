@@ -8,7 +8,7 @@ library(forcats)
 
 #access file from github
 
-file1 <- "https://raw.githubusercontent.com/JG-Masters-Research/R_Analysis/refs/heads/main/connections_list.csv?token=GHSAT0AAAAAADHNDBUSBYNEWZYRUVPHMVLE2DWQX3Q"
+file1 <- "https://raw.githubusercontent.com/JG-Masters-Research/R_Analysis/refs/heads/main/connections_list.csv"
 connections <- read_csv(file1)
 print(head(connections))
 
@@ -30,7 +30,7 @@ agencies
 
 #add SGCN data
 
-file2 <- "https://raw.githubusercontent.com/JG-Masters-Research/R_Analysis/refs/heads/main/species_participants.csv?token=GHSAT0AAAAAADHNDBUSCSX5ABDKEH7JSCJ42DWQXXQ"
+file2 <- "https://raw.githubusercontent.com/JG-Masters-Research/R_Analysis/refs/heads/main/species_participants.csv"
 sgcn <- read_csv(file2)
 print(head(sgcn))
 
