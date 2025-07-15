@@ -5,16 +5,11 @@ library(tidyr)
 library(gapminder)
 library(readr)
 library(forcats)
-library(googledrive)
 
-#access file from Google Drive
-drive_auth() #press 1 to access new Google Drive
-#login: jgmastersresearchhub@gmail.com
-#password: 3@syP@5sw0rd
+#access file from github
 
-file1 <- drive_get("connections_list.csv")
-connections <- drive_read_string(file1) %>% 
-  read_csv()
+file1 <- "https://raw.githubusercontent.com/JG-Masters-Research/R_Analysis/refs/heads/main/connections_list.csv?token=GHSAT0AAAAAADHNDBUSBYNEWZYRUVPHMVLE2DWQX3Q"
+connections <- read_csv(file1)
 print(head(connections))
 
 #specify data
@@ -35,9 +30,8 @@ gov_agencies
 
 #add SGCN data
 
-file2 <- drive_get("species_participants.csv")
-sgcn <- drive_read_string(file2) %>% 
-  read_csv()
+file2 <- "https://raw.githubusercontent.com/JG-Masters-Research/R_Analysis/refs/heads/main/species_participants.csv?token=GHSAT0AAAAAADHNDBUSCSX5ABDKEH7JSCJ42DWQXXQ"
+sgcn <- read_csv(file2)
 print(head(sgcn))
 
 #combine data to only include SGCN column
