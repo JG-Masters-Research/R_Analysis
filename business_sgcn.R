@@ -4,6 +4,7 @@ library(here)
 library(tidyr)
 library(gapminder)
 library(readr)
+library(forcats)
 
 #access file from github
 
