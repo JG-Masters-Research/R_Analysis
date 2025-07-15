@@ -4,16 +4,10 @@ library(here)
 library(tidyr)
 library(gapminder)
 library(readr)
-library(googledrive)
+library(forcats)
 
-#access file from Google Drive
-drive_auth() #press 1 to access new Google Drive
-#login: jgmastersresearchhub@gmail.com
-#password: 3@syP@5sw0rd
-
-file2 <- drive_get("species_participants.csv")
-sgcn <- drive_read_string(file2) %>% 
-  read_csv()
+file2 <- "https://raw.githubusercontent.com/JG-Masters-Research/R_Analysis/refs/heads/main/species_participants.csv?token=GHSAT0AAAAAADHNDBUSCSX5ABDKEH7JSCJ42DWQXXQ"
+sgcn <- read_csv(file2)
 print(head(sgcn))
 
 #layer 1
