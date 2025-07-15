@@ -4,18 +4,13 @@ library(here)
 library(tidyr)
 library(gapminder)
 library(readr)
-library(googledrive)
 
-#access file from Google Drive
-drive_auth() #press 1 to access new Google Drive
-#login: jgmastersresearchhub@gmail.com
-#password: 3@syP@5sw0rd
-
-file3 <- drive_get("Funds_per_Species.csv")
-funds <- drive_read_string(file3) %>% 
-  read_csv()
+#access data from github
+file3 <- "https://github.com/JG-Masters-Research/R_Analysis/blob/main/Funds_per_Species.csv"
+funds <- read_csv(file3)
 print(head(funds))
 
+#create plot with trendline
 funding <- ggplot(funds, aes(x = fct_reorder(State, SGCN), y = Funds)) +
   geom_point(color = "steelblue", fill = "green", shape = 21, alpha = 1) +
   geom_point(aes(size = SGCN)) +
