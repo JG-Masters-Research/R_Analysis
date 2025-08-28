@@ -1,0 +1,19 @@
+library(dplyr)
+library(readr)
+library(tidyverse)
+library(tidygraph)
+library(ggraph)
+library(igraph)
+file1 <- "https://raw.githubusercontent.com/JG-Masters-Research/R_Analysis/refs/heads/main/connections_list.csv"
+full <- read_csv(file1)
+subset <- full %>% 
+  select(state, agency) %>% 
+  distinct()
+g <- graph_from_data_frame(subset, directed = FALSE)
+V(g)$type <- ifelse(V(g)$name %in% subset$state, "State", "Agency")
+ggraph(g, layout = "fr") +
+  geom_edge_link(alpha = 0.3) +
+  geom_node_point(aes(color = type), size = 1) +
+  scale_color_manual(values = c("State" = "skyblue", "Agency" = "green")) +
+  theme_void() +
+  ggtitle("Network Map of States and Agencies")
