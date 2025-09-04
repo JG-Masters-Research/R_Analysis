@@ -1,0 +1,28 @@
+library(ggplot2)
+library(dplyr)
+library(here)
+library(tidyr)
+library(gapminder)
+library(readr)
+library(forcats)
+
+#access data from github
+file <- "https://raw.githubusercontent.com/JG-Masters-Research/R_Analysis/refs/heads/main/funds_species_participants.csv"
+funds_participants <- read_csv(file)
+fp <- na.omit(funds_participants)
+
+#create plot with trendline
+SGCN_fund_part <- ggplot(fp, aes(x = fct_reorder(state, participants), y = SGCN)) +
+  geom_point(color = "steelblue", fill = "green", shape = 21, alpha = 1) +
+  geom_point(aes(size = Funds)) +
+  geom_smooth(aes(group = 1), method = "lm", se = FALSE, color = "darkblue", linetype = "dashed") +
+  labs(
+    title = "Number of Participants Compared to Funds and SGCN",
+    subtitle = "Ordered by Number of Participants Listed",
+    x = "State (lowest to highest number of partners)",
+    y = "Number of SGCN",
+  ) +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+SGCN_fund_part
+
