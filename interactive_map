@@ -9,9 +9,10 @@ github_url <- "https://raw.githubusercontent.com/JG-Masters-Research/R_Analysis/
 my_data <- read.csv(github_url)
 head(my_data)
 
-#Get US State polygon data
+#Get US State polygon data, convert to WGS84
 states_sf <- tigris::states(cb = TRUE) %>% 
   filter(!STATEFP %in% c("60", "66", "69", "72", "78", "11"))
+states_sf <- st_transform(states_sf, 4326)
 
 #Merge github data to polygon
 merged_sf <- states_sf %>% 
@@ -21,28 +22,38 @@ merged_sf <- states_sf %>%
 popup_content <- paste0(
   "<strong>State: </strong>", merged_sf$NAME, "<br>",
   "<strong>SGCN: </strong>", merged_sf$SGCN, "<br>",
-  "<strong>Total Funds (2016): </strong>", merged_sf$Funds, "<br>",
-  "<strong>Funds Per Species: </strong>", merged_sf$Per.Species, "<br>",
+  "<strong>Total Funds (2016): </strong>$", merged_sf$Funds, "<br>",
+  "<strong>Funds Per Species: </strong>$", merged_sf$Per.Species, "<br>",
   "<strong>Agencies Participated: </strong>", merged_sf$participants
 )
+
+#Create color pallette for SGCN
+pal <- colorNumeric("YlGnBu", domain = merged_sf$SGCN)
 
 #Create interactive map
 leaflet(merged_sf) %>% 
   addProviderTiles(providers$CartoDB.Positron) %>% 
   setView(-98.58, 39.82, zoom = 4) %>% 
   addPolygons(
-    fillColor = "darkblue",
+    fillColor = ~pal(SGCN),
     weight = 1,
     opacity = 1,
-    color = "white",
+    color = "black",
     dashArray = "3",
     fillOpacity = 0.7,
     highlightOptions = highlightOptions(
       weight = 3,
-      color = "#666",
+      color = "cyan",
       dashArray = "",
       fillOpacity = 0.9,
       bringToFront = TRUE
     ),
     popup = popup_content
+  ) %>% 
+  addLegend(
+    pal = pal,
+    values = ~SGCN,
+    opacity = 0.7,
+    title = "Number of SGCN, 2015",
+    position = "bottomright"
   )
